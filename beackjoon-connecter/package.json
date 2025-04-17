@@ -1,0 +1,72 @@
+{
+  "name": "beackjoon-connecter",
+  "displayName": "백준 문제 탐색기",
+  "description": "백준 온라인 저지 문제를 쉽게 탐색하고 풀 수 있습니다.",
+  "version": "0.0.1",
+  "publisher": "vscode-baekjoon",
+  "private": true,
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "id": "baekjoonExplorer",
+          "name": "백준 문제 목록"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "baekjoon.refresh",
+        "title": "백준 문제 목록 새로고침",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "baekjoon.openProblem",
+        "title": "백준 문제 열기"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "baekjoon.refresh",
+          "when": "view == baekjoonExplorer",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.1",
+    "@typescript-eslint/parser": "^6.13.1",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "cheerio": "^1.0.0"
+  }
+}
